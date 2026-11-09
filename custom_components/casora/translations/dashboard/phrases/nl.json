@@ -2866,7 +2866,9 @@
     "Die Aufgabe konnte nicht gespeichert werden.": "De taak kon niet worden opgeslagen.",
     "Abhaken": "Afvinken",
     "Wieder öffnen": "Heropenen",
-    "Eintrag löschen?": "Dit item verwijderen?"
+    "Eintrag löschen?": "Dit item verwijderen?",
+    "eingeschaltet": "ingeschakeld",
+    "ausgeschaltet": "uitgeschakeld"
   },
   "patterns": [
     [

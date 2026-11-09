@@ -14,7 +14,8 @@ const tick = () => new Promise((r) => setTimeout(r, 0));
 // ── Budget and completeness ───────────────────────────────────────────────────
 const DASH = read('scripts/casora-i18n.js');
 const PANEL = read('panel/casora-panel-i18n.js');
-assert.ok(DASH.length < 40 * 1024, 'casora-i18n.js stays small (only German inline): ' + DASH.length);
+// Hestara fork: English phrases are inline too, so the budget covers German + English.
+assert.ok(DASH.length < 200 * 1024, 'casora-i18n.js stays small (German + English inline): ' + DASH.length);
 assert.ok(PANEL.length < 30 * 1024, 'casora-panel-i18n.js stays small (only English inline): ' + PANEL.length);
 const srcDash = fs.readdirSync(new URL('translations/dashboard/phrases/', CC)).filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).filter((l) => l !== 'de').sort();
 const srcPanel = fs.readdirSync(new URL('translations/panel/', CC)).filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).filter((l) => l !== 'en').sort();
@@ -74,14 +75,14 @@ function dash(language, { remembered = null, hass = true } = {}) {
   d.tr('Gerät fehlt');
   await new Promise((r) => setTimeout(r, 1700));
   await tick(); await tick();
-  assert.equal(d.calls.length, 2, 'language change fetches the new language: ' + d.calls.join(', '));
+  assert.equal(d.calls.length, 1, 'language change to English fetches nothing (English is inline): ' + d.calls.join(', '));
   assert.equal(d.tr('Gerät fehlt'), 'Device missing', 'English after the change');
 }
 {
   const d = dash('sv');
   d.tr('Gerät fehlt');
   await tick(); await tick(); await tick();
-  assert.deepEqual(d.calls, ['http://ha.local/casora_scripts/i18n/en.json?v=1234'], 'language without a table: English fallback only');
+  assert.deepEqual(d.calls, [], 'language without a table: English fallback is inline, nothing fetched');
   assert.equal(d.tr('Gerät fehlt'), 'Device missing');
 }
 {

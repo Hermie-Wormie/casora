@@ -2866,7 +2866,9 @@
     "Die Aufgabe konnte nicht gespeichert werden.": "Nie udało się zapisać zadania.",
     "Abhaken": "Odhacz",
     "Wieder öffnen": "Otwórz ponownie",
-    "Eintrag löschen?": "Usunąć ten wpis?"
+    "Eintrag löschen?": "Usunąć ten wpis?",
+    "eingeschaltet": "włączone",
+    "ausgeschaltet": "wyłączone"
   },
   "patterns": [
     [

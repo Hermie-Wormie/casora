@@ -2848,7 +2848,9 @@
     "Die Aufgabe konnte nicht gespeichert werden.": "The task could not be saved.",
     "Abhaken": "Tick off",
     "Wieder öffnen": "Reopen",
-    "Eintrag löschen?": "Delete this item?"
+    "Eintrag löschen?": "Delete this item?",
+    "eingeschaltet": "turned on",
+    "ausgeschaltet": "turned off"
   },
   "patterns": [
     [

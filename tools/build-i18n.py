@@ -471,9 +471,11 @@ def main() -> int:
     body = json.dumps(tables, ensure_ascii=False, indent=2, sort_keys=True)
     # The source language (de, a few entries) ships inline; every other language is its own file,
     # fetched by the runtime only when that language is shown.
-    inline = {k: v for k, v in phrases.items() if k == SOURCE}
+    # Hestara fork: English ships inline too, so an English user never sees the German source text
+    # in the moment before i18n/en.json arrives.
+    inline = {k: v for k, v in phrases.items() if k in (SOURCE, "en")}
     pbody = json.dumps(inline, ensure_ascii=False, separators=(",", ":"))
-    avail = sorted(k for k in phrases if k != SOURCE)
+    avail = sorted(k for k in phrases if k != SOURCE)  # en.json is still written (tests and tools read it)
 
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(RUNTIME % (body, pbody, json.dumps(avail)))
